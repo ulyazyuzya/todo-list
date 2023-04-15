@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo List</title>
+</head>
+<body>
+    <header class="header">
+        <div class="head_container">
+            <div class="title_wrapper">
+                <h1 class="title">ToDo приложение</h1>
+            </div>
+            
+            <div class="today_tasks">
+                <h2>список задач на сегодня</h2>
+            </div>
+        </div>
+    </header>
+        
+    <main class="main">
+        <div class="main_container">
+            <div class="list_wrapper">
+                <div class="empty_list">
+                    <div class="empty_img">
+                        <img src="img/leaf.png" alt="emtpy_list" width="70" class="empty_list_img">
+                    </div>
+                    
+                    <div class="empty-list__title">
+                        <p>Список дел пуст</p>  
+                    </div>
+                </div>
+
+                <div class="tasks_list">
+                    <ul class="tasks_list_item">
+                        <li class="tasks_group">
+                            <p class="task_text">сходить на физру</p>
+                            <div class="task_btn">
+                                <button type="button" class="btn_done">
+                                    <img src="img/done.png" alt="done" width="15" class="done_img">
+                                </button>
+                                <button type="button" class="btn_delete">
+                                    <img src="img/delete.png" alt="delete" width="15" class="delete_img">
+                                </button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            
+            <div class="add_tasks">
+                <div class="add_tasks_header">
+                    <p class="add_task_title">Добавить новую задачу</p>
+                </div>
+                <div class="add_tasks_text">
+                        <div class="input_field">
+                            <input type="text" class="input_text" placeholder="Текст задачи" required>
+                            <small class="text_below_input">Что делаем, сколько времени тратим, какой результат получаем.</small>
+                        </div>
+                        <button type="submit" class="add_btn"> 
+                            Добавить
+                        </button>
+                </div>
+            </div>
+            <div class="delete_task">
+                <div class="del_all_tasks">
+                    <button class="del_all_tasks_btn"> Удалить все задачи</button>
+                </div>
+                
+                <div class="del_done_tasks">
+                    <button class="del_done_tasks_btn"> Удалить все выполненные задачи</button>
+                </div>
+            </div>
+            
+        </div>
+    </main>  
+</body>
+</html>
