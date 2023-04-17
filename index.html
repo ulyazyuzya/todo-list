@@ -4,37 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ToDo List</title>
+    <title>todo list</title>
+    <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
-        
+    
     <header> 
-        <div class="container">
+        <div class="header_container">
             <h1>ToDo приложение</h1>
             <h2 class="today_tasks">список задач на сегодня</h2>
         </div>
     </header>
 
-    <main>
+    <main class="main">
         <section class="tasks">
             <div class="tasks_container">
                 <ul class="tasks_list">
                     <li class="tasks_list_item">
-                        <span class="task_name">
-                            сходить на пары
-                        </span>
+                        <span class="task_text">Cходить на пары</span>
                         <div class="task_item_btn">
-                            <button type="button" class="done">done</button>
-                            <button type="button" class="delete">delete</button>
-                        </div>
-                    </li>
-                    <li class="tasks_list_item">
-                        <span class="task_name">
-                            сделать отчет
-                        </span>
-                        <div class="task_item_btn">
-                            <button type="button" class="done">done</button>
-                            <button type="button" class="delete">delete</button>
+                            <button type="button" class="done">
+                                <img src="img/done.png" alt="done" width="20" class="done_img">
+                            </button>
+                            <button type="button" class="delete"><img src="img/delete.png" alt="delete" width="20" class="delete_img"></button>
                         </div>
                     </li>
                 </ul>
@@ -43,7 +35,7 @@
 
 
         <section class="new_tasks">
-            <div class="container">
+            <div class="new_tasks_container">
                 <h3 class="new_tasks_header">Добавить новую задачу</h3>
                     <form class="input_form">
                         <div class="new_tasks_input">
@@ -51,14 +43,12 @@
                             <div class="text_below_input">Что делаем, сколько времени тратим, какой результат получаем.</div>
                         </div>
                         <button type="submit" class="add_btn"> 
-                            Добавить
+                                Добавить
                         </button>
-                        <button type="button" class="del_all_tasks_btn"> Удалить все задачи</button>
+                        <!-- <button type="button" class="del_all_tasks_btn"> Удалить все задачи</button> -->
                     </form>
             </div>
         </section>
     </main>
-
- 
 </body>
 </html>
