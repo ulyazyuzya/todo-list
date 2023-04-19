@@ -36,3 +36,17 @@ header h1 {
     max-width: 60%;
 }
 
+.empty_list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    padding: 20px 20px;
+    margin-bottom: 10px;
+
+}
+.empty_list .empty_list_text {
+    font-size: 25px;
+
+}
+
