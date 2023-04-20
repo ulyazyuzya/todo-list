@@ -50,3 +50,41 @@ header h1 {
 
 }
 
+.tasks {
+    min-width: 200px;
+    background-color: rgb(255, 255, 255)
+}
+
+
+.tasks_container {
+    width: 500px;
+    max-height: 230px;
+    overflow:auto;
+    background-color:rgb(231, 231, 231);
+}
+
+.task_text {
+    font-size: 20px;
+}
+
+.tasks_list_item button{
+    appearance: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.text_below_input {
+    font-size: 10px;
+}
+
+.tasks_list_item {
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    line-height: 50px;
+    margin-bottom: 8px;
+    padding: 0 12px 0 20px;
+    background-color: white;
+
+}
