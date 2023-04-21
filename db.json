@@ -1,11 +1,3 @@
 {
-    "requests": [
-        {
-            "id": 1,
-            "text": "Не умереть",
-            "date": "15.04.2023",
-            "isDone": false
-
-        }
-    ]
+  "requests": []
 }

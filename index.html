@@ -25,53 +25,8 @@
             </div>
         </section>
 
-        <section class="tasks">
+        <section class="tasks active">
             <div class="tasks_container">
-                <div class="tasks_list_item">
-                    <span class="task_text">Cходить на пары</span>
-                    <div class="task_item_btn">
-                        <button type="button" class="done">
-                            <img src="img/done.png" alt="done" width="20" class="done_img">
-                        </button>
-                        <button type="button" class="delete"><img src="img/delete.png" alt="delete" width="20" class="delete_img"></button>
-                    </div>
-                </div>
-                <div class="tasks_list_item">
-                    <span class="task_text">Помыть посуду</span>
-                    <div class="task_item_btn">
-                        <button type="button" class="done">
-                            <img src="img/done.png" alt="done" width="20" class="done_img">
-                        </button>
-                        <button type="button" class="delete"><img src="img/delete.png" alt="delete" width="20" class="delete_img"></button>
-                    </div>
-                </div>
-                <div class="tasks_list_item">
-                    <span class="task_text">Cделать отчет</span>
-                    <div class="task_item_btn">
-                        <button type="button" class="done">
-                            <img src="img/done.png" alt="done" width="20" class="done_img">
-                        </button>
-                        <button type="button" class="delete"><img src="img/delete.png" alt="delete" width="20" class="delete_img"></button>
-                    </div>
-                </div>
-                <div class="tasks_list_item">
-                    <span class="task_text">Выбросить мусор</span>
-                    <div class="task_item_btn">
-                        <button type="button" class="done">
-                            <img src="img/done.png" alt="done" width="20" class="done_img">
-                        </button>
-                        <button type="button" class="delete"><img src="img/delete.png" alt="delete" width="20" class="delete_img"></button>
-                    </div>
-                </div>
-                <div class="tasks_list_item">
-                    <span class="task_text">Выгулять собаку</span>
-                    <div class="task_item_btn">
-                        <button type="button" class="done">
-                            <img src="img/done.png" alt="done" width="20" class="done_img">
-                        </button>
-                        <button type="button" class="delete"><img src="img/delete.png" alt="delete" width="20" class="delete_img"></button>
-                    </div>
-                </div>
             </div>
     </section>
 
@@ -80,16 +35,18 @@
             <h3 class="new_tasks_header">Добавить новую задачу</h3>
                 <form class="input_form">
                     <div class="new_tasks_input">
-                        <input type="text" class="input_text" placeholder="Текст задачи" required>
+                        <input type="text" id="taskInput" class="input_text" placeholder="Текст задачи" name="text" value="" required>
                         <div class="text_container"><span class="text_below_input">Что делаем, сколько времени тратим, какой результат получаем.</span></div>
                     </div>
-                    <button type="submit" class="add_btn"> 
+                    <button type="submit" class="add_btn" id="addTask"> 
                             Добавить
                     </button>
-                    <!-- <button type="button" class="del_all_tasks_btn"> Удалить все задачи</button> -->
+                    <button type="button" id="dellAllTask" class="del_all_tasks_btn"> Удалить все задачи</button>
+                    <button type="button" id="dellAllDoneTask" class="del_all_tasks_btn"> Удалить все выполненные задачи</button>
                 </form>
         </div>
     </section>
     </main>
+    <script src="js/main.js"></script>
 </body>
 </html>
