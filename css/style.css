@@ -117,8 +117,6 @@ header h1 {
     z-index: 999999;
 }
 
-/*  */
-
 .new_tasks_container {
     display: flex;
     flex-direction: column;
@@ -179,3 +177,4 @@ form {
     cursor: pointer;
     border-radius: 4px;
 }
+
