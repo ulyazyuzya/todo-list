@@ -57,7 +57,7 @@ header h1 {
 
 
 .tasks_container {
-    width: 500px;
+    width: 100%;
     max-height: 230px;
     overflow:auto;
     background-color:rgb(231, 231, 231);
@@ -117,3 +117,65 @@ header h1 {
     z-index: 999999;
 }
 
+/*  */
+
+.new_tasks_container {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+form {
+    display: block;
+    background-color: rgb(241, 241, 241);
+    padding: 10px 10px;
+
+}
+
+.new_tasks_header {
+    padding: 12px 18px;
+    margin-top: 20px;
+    margin-bottom: 0;
+    background-color: rgb(243, 243, 243);
+    border-bottom: 1px solid rgba(0,0,0,.125);
+    font-size: 20px;
+    font-weight: 400;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.input_text {
+    display: block;
+    width: 100%;
+    font-size: 18px;
+    line-height: 1.5;
+    color: rgb(214, 214, 214);
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(143, 142, 142);
+    border-radius: 5px;
+}
+
+
+.new_tasks_input {
+    padding: 20px;
+}
+
+.add_btn {
+    padding: 8px 8px;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    background-color: rgb(46, 34, 209);
+    border-color: rgb(12, 4, 121);
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.del_all_tasks_btn {
+    padding: 8px 8px;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    background-color: rgb(46, 34, 209);
+    border-color: rgb(12, 4, 121);
+    cursor: pointer;
+    border-radius: 4px;
+}
