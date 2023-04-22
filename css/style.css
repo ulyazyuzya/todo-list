@@ -61,6 +61,7 @@ header h1 {
     max-height: 230px;
     overflow:auto;
     background-color:rgb(231, 231, 231);
+    position: relative;
 }
 
 .task_text {
@@ -72,6 +73,8 @@ header h1 {
     outline: none;
     border: none;
     cursor: pointer;
+    position: relative;
+    z-index: 1;
 }
 
 .text_below_input {
@@ -85,7 +88,8 @@ header h1 {
     line-height: 50px;
     padding: 0 12px 0 20px;
     background-color: white;
-
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    position: relative;
 }
 
 .active {
@@ -98,3 +102,18 @@ header h1 {
 .done_task {
     text-decoration: line-through;
 }
+
+.task_text.true {
+    text-decoration: line-through;
+}
+
+.change_input {
+    width: 75%;
+    top: 25%;
+    left: 0;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    position: absolute;
+    z-index: 999999;
+}
+

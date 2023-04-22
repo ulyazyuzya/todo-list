@@ -21,13 +21,6 @@ class Task {
             classForm.classList.remove('hide')
         }
 
-        if (this.isDone === true) {
-            element.classList.add('done_task');
-            element.style.cssText = `
-            text-decoration: line-through;
-            `;
-        }
-
         if (this.classes.length === 0) {
             this.classes = 'tasks_list_item';
             // const isdone = this.isDone;
@@ -37,8 +30,13 @@ class Task {
             this.classes.forEach(className => element.classList.add(className));
         }
 
+        if (this.isDone === true) {
+            element.classList.add('Done');
+        }
+
+
         element.innerHTML = `
-            <span class="task_text">${this.task_value}</span>
+            <span class="task_text ${this.isDone}">${this.task_value}</span>
             <div class="task_item_btn" id="${this.isDone}">
                 <button type="button" id='${this.id}' class="done" data-action="done">
                     <img src="img/done.png" id='${this.id}' alt="done" width="20" class="done_img" data-action="done">
@@ -235,16 +233,6 @@ class Task {
         data.forEach(({id,isDone}) => {
             if(isDone == true) {
                 task.deleteTaskById(id);
-                // let count = classForm.children[id-1-i];
-                // i++;
-                // count.remove();
-                // console.log(i);
-                // console.log(id);
-                // if(i == id) {
-                //     console.log('okeeey');
-                //     emptyLogo.classList.remove('hide');
-                // }
-
             }
             
         });
@@ -261,6 +249,7 @@ const classForm = document.querySelector('.empty_');
 const btnDelAll = this.document.querySelector('#dellAllTask')
 const btnDelAllDone = this.document.querySelector('#dellAllDoneTask')
 const class_Form = document.querySelector('.tasks_container');
+const change = document.querySelector('.tasks_container');
 const emptyLogo = document.querySelector('.empty_');
 task.printTask(form);
 
@@ -273,29 +262,56 @@ btnDelAll.addEventListener('click',deleteAllTask);
 btnDel.addEventListener('click',deletetask);
 btnDone.addEventListener('click',doneTask);
 btnDelAllDone.addEventListener('click',delAllDoneTask);
+change.addEventListener('dblclick',changeTask);
 
-function asd() {
-    if(class_Form.childNodes.length == 0) {
-        console.log('okeeey');
-        // emptyLogo.classList.remove('hide');
-    }
+function changeTask(e) {
+    console.log(e.target);
+    const r = e.target;
+    const curInput = document.createElement('input');
+    curInput.classList.add('change_input');
+    // const a = r.closest('.tasks_container');
+    // const b = document.createElement('div');
+    // b.innerHTML = `
+    //         <div class="tasks_list_item">
+    //             <span class="task_text">lol</span>
+    //             <div class="task_item_btn">
+    //                 <button type="button" class="done" data-action="done">
+    //                     <img src="img/done.png" id= alt="done" width="20" class="done_img" data-action="done">
+    //                 </button>
+    //                 <button type="button"  class="delete" data-action="delete"><img src="img/delete.png" alt="delete" width="20" class="delete_img" data-action="delete"></button>
+    //             </div>
+    //         </div>
+    // `;
+    // a.prepend(b);
+    // r.remove();
+    r.prepend(curInput);
+    let c = document.querySelector('.change_input');
+    console.log(c);
+    console.log(c.value);
 }
 
 
 
 function delAllDoneTask(e) {
-    task.deleteAllDoneTask();
-    for (let index = 0; index < class_Form.childNodes.length; index++) {
-        console.log(class_Form.childNodes[index].className);
-        console.log(class_Form.childNodes[index]);
-        if (class_Form.childNodes[index].className === 'tasks_list_item') {
-            console.log('exelent');
-            console.log(class_Form.childNodes[index]);
-            class_Form.removeChild(class_Form.childNodes[index]);
-        }
-        if (class_Form.childNodes.length == 0) {
+    // task.deleteAllDoneTask();
+    for (let index = 0; index < class_Form.children.length; index++) {
+        console.log(index);
+        console.log(class_Form.children[index].className);
+            while (class_Form.children[index].className === 'tasks_list_item Done') {
+                console.log('exelent');
+                const idItem = class_Form.children[index].id;
+                console.log(idItem);
+                task.deleteTaskById(idItem);
+                class_Form.removeChild(class_Form.children[index])
+
+                if (class_Form.children.length <=0 || class_Form.children.length <= index ) {
+                    break;
+                }
+            };
+        if (class_Form.children.length === 0) {
             emptyLogo.classList.remove('hide');
-        }
+        };
+
     }
 
 }
@@ -312,14 +328,14 @@ function doneTask(e) {
     if (e.target.dataset.action === 'done') {
         console.log('done');
         const parentNode = e.target.closest('.tasks_list_item');
-        const formText = task.getTextTask(parentNode.id)
+        let textNode = parentNode.children[0];
         task.getTextTask(parentNode.id,parentNode);
-        console.log(formText);
-        console.log(parentNode.id);
-        console.log(parentNode.text);
-        
+        // console.log(formText);
+        // console.log(parentNode.id);
+        // console.log(parentNode.text);
+        parentNode.classList.add('Done');
         // task.doneTask(parentNode.id);
-        parentNode.style.cssText = `
+        textNode.style.cssText = `
         text-decoration: line-through;
         `;
     }
