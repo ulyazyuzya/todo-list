@@ -216,7 +216,6 @@ class Task {
         const emptyLogo = document.querySelector('.empty_');
         const classForm = document.querySelector('.tasks_container');
         let i = 0;
-        // console.log(classForm.children[id-1]);
 
         const task = new Task();
         const getResource = async (url) => {
@@ -239,6 +238,50 @@ class Task {
         });
     }
 
+    changeTask(id,text_v,Date_v,Done) {
+        console.log(id);
+        fetch('http://localhost:3000/requests' + '/' + id, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            text: text_v,
+            Date: Date_v,
+            isDone: Done
+        })
+        })
+        .then(res => {
+        return res.json()
+        })
+        .then(data => console.log(data))
+    }
+
+    getTextTaskChange(id_a,text_a) {
+        const task = new Task();
+        const getResource = async (url) => {
+            const res = await fetch(url);
+    
+            if (!res.ok) {
+                throw new Error(`Could not fetch ${url}, status: ${res.status}`);
+            }
+    
+            return await res.json();
+        }
+        let a = '';
+        console.log('bbb');
+        getResource('http://localhost:3000/requests')
+        .then(data => {
+        data.forEach(({text,id,Date,isDone}) => {
+            if(id == id_a) {
+                task.changeTask(id_a,text_a,Date,isDone);
+               console.log(text);;
+            }
+            
+        });
+        });
+    }
+
 }
 
 
@@ -250,6 +293,8 @@ const btnDelAll = this.document.querySelector('#dellAllTask')
 const btnDelAllDone = this.document.querySelector('#dellAllDoneTask')
 const class_Form = document.querySelector('.tasks_container');
 const change = document.querySelector('.tasks_container');
+const changeReverseDone = document.querySelector('.tasks_container');
+const changeReverseDel = document.querySelector('.tasks_container');
 const emptyLogo = document.querySelector('.empty_');
 task.printTask(form);
 
@@ -263,12 +308,95 @@ btnDel.addEventListener('click',deletetask);
 btnDone.addEventListener('click',doneTask);
 btnDelAllDone.addEventListener('click',delAllDoneTask);
 change.addEventListener('dblclick',changeTask);
+changeReverseDone.addEventListener('click',changeTaskDone);
+changeReverseDel.addEventListener('click',changeTaskDel);
+
+function changeTaskDel(e) {
+    if (e.target.dataset.action === 'delChange') {
+        console.log('delChange');
+        const parentNode = e.target.closest('.tasks_list_item');
+        let pr = e.target.closest('.tasks_container');
+        console.log(pr.children.length);
+        for (let index = 0; index < pr.children.length; index++) {
+            console.log(parentNode.id);
+            console.log(pr.children[index].id);
+            if (parentNode.id === pr.children[index].id) {
+                pr.children[index].classList.remove('hide');
+            }
+        }
+
+        parentNode.remove();
+        // let textNode = parentNode.children[0];
+        // console.log(textNode.value);
+        // task.getTextTaskChange(parentNode.id,textNode.value);
+        // task.getTextTask(parentNode.id,parentNode);
+        // console.log(formText);
+        // console.log(parentNode.id);
+        // console.log(parentNode.text);
+        // parentNode.classList.add('Done');
+        // task.doneTask(parentNode.id);
+        // textNode.style.cssText = `
+        // text-decoration: line-through;
+        // `;
+    }
+}
+
+function changeTaskDone(e) {
+    if (e.target.dataset.action === 'donChange') {
+        console.log('doneChange');
+        const parentNode = e.target.closest('.tasks_list_item');
+        let textNode = parentNode.children[0];
+        console.log(textNode.value);
+        task.getTextTaskChange(parentNode.id,textNode.value);
+        let pr = e.target.closest('.tasks_container');
+
+        for (let index = 0; index < pr.children.length; index++) {
+            console.log(parentNode.id);
+            console.log(pr.children[index].id);
+            if (parentNode.id === pr.children[index].id) {
+                pr.children[index].classList.remove('hide');
+                let pr1 = pr.children[index];
+                pr1.children[0].innerHTML = `
+                <span class="task_text ${textNode.isDone}">${textNode.value}</span>
+                `;
+            }
+        }
+
+        parentNode.remove();
+        // task.getTextTask(parentNode.id,parentNode);
+        // console.log(formText);
+        // console.log(parentNode.id);
+        // console.log(parentNode.text);
+        // parentNode.classList.add('Done');
+        // task.doneTask(parentNode.id);
+        // textNode.style.cssText = `
+        // text-decoration: line-through;
+        // `;
+    }
+}
 
 function changeTask(e) {
     console.log(e.target);
-    const r = e.target;
-    const curInput = document.createElement('input');
-    curInput.classList.add('change_input');
+    const idTarget = e.target.closest('.tasks_list_item').id;
+    const isDone = e.target.closest('.tasks_list_item').isDone;
+    console.log(idTarget);
+    const targetForm = e.target;
+    const hideForm = e.target.closest('.tasks_list_item');
+    hideForm.classList.add('hide');
+    const curInput = document.createElement('div');
+    curInput.classList.add('tasks_list_item');
+    curInput.classList.add('change');
+    curInput.setAttribute('id',idTarget);
+    curInput.setAttribute('isDone',isDone);
+    curInput.innerHTML = `
+    <input type="text" id="taskInput" class="input_text change_input" placeholder="Текст задачи" name="text" value="" required>
+            <div class="task_item_btn" >
+                <button type="button" id="${idTarget}"  class="done" data-action="donChange">
+                    <img src="img/done.png"  alt="done" width="20" class="done_img" data-action="donChange">
+                </button>
+                <button type="button" id="${idTarget}" class="delete" data-action="delChange"><img src="img/delete.png" alt="delete" width="20" class="delete_img" data-action="delChange"></button>
+            </div>`
+    // curInput.classList.add('change_input');
     // const a = r.closest('.tasks_container');
     // const b = document.createElement('div');
     // b.innerHTML = `
@@ -284,10 +412,15 @@ function changeTask(e) {
     // `;
     // a.prepend(b);
     // r.remove();
-    r.prepend(curInput);
-    let c = document.querySelector('.change_input');
-    console.log(c);
-    console.log(c.value);
+    targetForm.closest('.tasks_container').prepend(curInput);
+    console.log(e.target);
+
+    if(e.target.dataset.action === "donChange") {
+        console.log('doneChange');
+    }
+    // let c = document.querySelector('.change_input');
+    // console.log(c);
+    // console.log(c.value);
 }
 
 

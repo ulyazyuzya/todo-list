@@ -107,14 +107,20 @@ header h1 {
     text-decoration: line-through;
 }
 
-.change_input {
+/* .tasks_list_item_change {
+    position: absolute;
+    z-index: 999999;
     width: 75%;
-    top: 25%;
+} */
+
+.input_text.change_input {
+    width: 75%;
+    /* top: 25%;
     left: 0;
     padding-top: 10px;
     padding-bottom: 5px;
     position: absolute;
-    z-index: 999999;
+    z-index: 999999; */
 }
 
 /*  */
